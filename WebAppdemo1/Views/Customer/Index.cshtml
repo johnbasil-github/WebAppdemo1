@@ -26,7 +26,21 @@
                 <td>@cust.Email</td>
                 <td>@cust.ContactNo</td>
                 <td>@cust.Location</td>
+
+                    <td>
+                    <a asp-action="Details" asp-route-id="@cust.CustomerId"
+                       class="btn btn-sm btn-info">Detail</a>
+                    </td>
+                    <td>
+                    <a asp-action="Delete" asp-route-id="@cust.CustomerId"
+                       class="btn btn-sm btn-info">Delete</a>
+                    </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@cust.CustomerId"
+                       class="btn btn-sm btn-info">Update</a>
+                </td>
             </tr>
+           
         }
     </tbody>
 </table>

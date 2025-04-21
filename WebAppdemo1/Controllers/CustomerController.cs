@@ -22,9 +22,10 @@ namespace WebApp.Sales.Controllers
             return View(customerList);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var person = context.Customers.Find(id);
+            return View(person);
         }
 
         [HttpGet]
@@ -41,7 +42,30 @@ namespace WebApp.Sales.Controllers
             return RedirectToAction("Index");
         }
 
-
         public IActionResult Delete(int id)
+        {
+            var person = context.Customers.Find(id);
+
+            context.Customers.Remove(person);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var person = context.Customers.Find(id);
+            return View(person);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Customers customerList)
+        {
+            context.Customers.Update(customerList);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
