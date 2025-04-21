@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApp.Sales.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employee Index</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Dob</th>
+            <th>EmailId</th>
+            <th>Salary</th>
+            <th>Designation</th>
+            <th>Age</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var emp in Model)
+        {
+        <tr>
+            <td>@emp.id</td>
+            <td>@emp.Name</td>
+            <td>@emp.Dob</td>
+            <td>@emp.EmailId</td>
+            <td>@emp.Salary</td>
+            <td>@emp.Designation</td>
+            <td>@emp.Age</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

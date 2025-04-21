@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApp.Sales.Models.Customers>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Customer</h1>
+
+<a href="/Customer/Create">Add</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>CustomerId</th>
+            <th>CustomerName</th>
+            <th>Email</th>
+            <th>ContactNo</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+                <td>@cust.CustomerId</td>
+                <td>@cust.CustomerName</td>
+                <td>@cust.Email</td>
+                <td>@cust.ContactNo</td>
+                <td>@cust.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
