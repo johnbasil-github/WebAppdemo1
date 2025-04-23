@@ -8,7 +8,7 @@ namespace WebApp.Sales.Models
     {
         [Key]
         public int CustomerId { get; set; }
-
+        [Display(Name ="CustName")]
         public string? CustomerName { get; set; }
 
         public string? Email { get; set; }
@@ -16,5 +16,7 @@ namespace WebApp.Sales.Models
         public long ContactNo { get; set; }
 
         public string? Location { get; set; }
+
+        public List<Orderss> ordersses  {  get; set; }
     }
 }

@@ -1,30 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebApp.Sales.Data;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Sales.Models;
+using WebApp.Services.Repository;
 
 namespace WebApp.Sales.Controllers
 {
     public class CustomerController : Controller
     {
 
-        private ApplicationDbContext context;
-
-        public CustomerController(ApplicationDbContext context)
+        
+        private ICustomerRepository _customerRepository;
+        public CustomerController(ICustomerRepository repository)
         {
-            this.context = context;
+            _customerRepository= repository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             List<Customers> customerList = new List<Customers>();
 
-            customerList = context.Customers.ToList();
+            customerList = await _customerRepository.GetAllCustomersAsync();
 
             return View(customerList);
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var person = context.Customers.Find(id);
+            var person = await _customerRepository.GetCustomersByIdAsync(id);
             return View(person);
         }
 
@@ -35,19 +36,15 @@ namespace WebApp.Sales.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Customers customerList)
+        public async Task<IActionResult> Create(Customers customerList)
         {
-            context.Customers.Add(customerList);
-            context.SaveChanges();
+             await _customerRepository.AddCustomersAsync(customerList);
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var person = context.Customers.Find(id);
-
-            context.Customers.Remove(person);
-            context.SaveChanges();
+           await _customerRepository.DeleteCustomersAsync(id);
             return RedirectToAction("Index");
         }
 
@@ -55,16 +52,15 @@ namespace WebApp.Sales.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var person = context.Customers.Find(id);
+            var person = _customerRepository.GetCustomersByIdAsync(id);
             return View(person);
         }
 
 
         [HttpPost]
-        public IActionResult Edit(Customers customerList)
+        public async Task<IActionResult> Edit(Customers customerList)
         {
-            context.Customers.Update(customerList);
-            context.SaveChanges();
+           await _customerRepository.UpdateCustomersAsync(customerList);
             return RedirectToAction("Index");
         }
     }
