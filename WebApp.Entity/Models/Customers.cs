@@ -17,6 +17,7 @@ namespace WebApp.Sales.Models
 
         public string? Location { get; set; }
 
+
         public List<Orderss> ordersses  {  get; set; }
     }
 }

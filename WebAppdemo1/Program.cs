@@ -1,9 +1,15 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Sales.Data;
 using WebApp.Services.Repository;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
