@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Sales.Data;
 using WebApp.Sales.Models;
 
 namespace WebApp.Sales.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
 

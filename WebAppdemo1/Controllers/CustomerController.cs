@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Sales.Models;
 using WebApp.Services.Repository;
 
 namespace WebApp.Sales.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
 
